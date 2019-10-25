@@ -367,6 +367,10 @@ https://www.linode.com/docs/networking/vpn/set-up-a-hardened-openvpn-server/
     # Allow incoming Mosh.
     -A INPUT -i eth0 -p udp -m state --state NEW,ESTABLISHED -m multiport --dport 60000:61000 -j ACCEPT
     -A OUTPUT -o eth0 -p udp -m state --state ESTABLISHED  -m multiport --sport 60000:61000 -j ACCEPT
+    
+    # Allow incoming Eternal Terminal.
+    -A INPUT -i eth0 -p tcp -m state --state NEW,ESTABLISHED -m tcp --dport 2022 -j ACCEPT 
+    -A OUTPUT -o eth0 -p tcp -m state --state ESTABLISHED -m tcp --sport 2022 -j ACCEPT 
 
     # Allow UDP traffic on port 1194.
     -A INPUT -i eth0 -p udp -m state --state NEW,ESTABLISHED --dport 1194 -j ACCEPT
